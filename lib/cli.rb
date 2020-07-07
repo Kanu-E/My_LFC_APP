@@ -4,6 +4,7 @@ class CLI
         introduction
         get_Player_stats
         # binding.pry
+        display_players
         main_loop
     end
 
@@ -30,6 +31,8 @@ class CLI
                 break
             when "invalid"
                 next
+            when "list"  
+            display_players
             else
               puts player_details_1(input)
               puts player_position_details(input)
@@ -37,21 +40,13 @@ class CLI
             end
           end
     
-      # binding.pry
-    end
-    
-    def menu
-      display_players
-      display_instructions
-      # binding.pry
-    end
-    
+   
     def display_players
       players = Players.all
       players.each.with_index(1) {|player, index| puts "#{index}. #{player.name}, Age: #{player.age}, Nation: #{player.nation}"}
     end
     
-    def display_instructions
+    def menu
         puts <<-INST
         
 Please select the player who you will like to view his statistics by inputing a number or type 'exit' to exit the program.        
