@@ -30,33 +30,34 @@ class CLI
             when "exit"
                 break
             when "invalid"
-                next
-            when "list"  
-            display_players
-            else
-              puts player_details_1(input)
-              puts player_position_details(input)
-              puts player_details_2(input)
+                  next
+              when "list"  
+              display_players
+              else
+                puts player_details_1(input)
+                puts player_position_details(input)
+                puts player_details_2(input)
+              end
             end
-          end
-    
-   
-    def display_players
-      players = Players.all
-      players.each.with_index(1) {|player, index| puts "#{index}. #{player.name}, Age: #{player.age}, Nation: #{player.nation}"}
-    end
-    
-    def menu
-        puts <<-INST
-        
-Please select the player who you will like to view his statistics by inputing a number or type 'exit' to exit the program.        
-        
-        INST
-    end
-    
+    end        
+      
+     
+      def display_players
+        players = Players.all
+        players.each.with_index(1) {|player, index| puts "#{index}. #{player.name}, Age: #{player.age}, Nation: #{player.nation}"}
+      end
+      
+      def menu
+          puts <<-INST
+          
+  Please select the player who you will like to view his statistics by inputing a number or type 'exit' to exit the program.        
+          
+          INST
+      end
+      
     def choose_player
         input = gets.strip.downcase
-        commands = ["exit", "next"]
+        commands = ["exit", "next", "list"]
         return input.downcase if commands.include?(input.downcase)
         if input.to_i.between?(1, Players.all.length)
             return input.to_i 
